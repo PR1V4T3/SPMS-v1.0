@@ -14,20 +14,20 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
-void anyKey(){
+void anyKey(){                                                                  // DONE
 
     char anyKey;
     cout << "Press any key and enter to continue. \n";
     cin >> anyKey;
 }
 
-bool checkIsExist(string filePath){
+bool checkIsExist(string filePath){                                             // DONE
 
     fstream checkFile(filePath.c_str());
     return checkFile.is_open();
 }
 
-bool configFileStatus(bool isShowInformation = false){                          //
+bool configFileStatus(bool isShowInformation = false){                          // DONE
 
     bool status = checkIsExist("APPLICATION_CONFIG.txt");
 
@@ -337,27 +337,59 @@ const char *dateAndTime(string mode = "all"){                                   
 
 void showConfig(){                                                              // TODO
 
-    cout << " __________________________________________________________ \n";
-    cout << "|                                                          |\n";
-    cout << "| All settings has shown in the bottom.                    |\n";
-    cout << "|__________________________________________________________|\n";
-    cout << " __________________________________________________________ \n";
-    cout << "|                                                          |\n";
-    cout << "| APPLICATION SETTINGS:                                    |\n";
-    cout << "|__________________________________________________________|\n";
-    cout << "                                                            \n";
+    int pick;
+    bool endLoop = false;
 
-    textService("APPLICATION_CONFIG.txt");
+    do{
+
+
 
     cout << " __________________________________________________________ \n";
     cout << "|                                                          |\n";
-    cout << "| PARSER SETTINGS:                                         |\n";
+    cout << "| All settings will show in there.                         |\n";
+    cout << "|                                                          |\n";
+    cout << "| [1] APP / [2] PARSER / [3] EXIT TO MAIN MENU             |\n";
     cout << "|__________________________________________________________|\n";
-    cout << "                                                            \n";
 
-    textService("PARSER_CONFIG.txt");
+    cin >> pick;
 
-    anyKey();
+    system("clear");
+
+        switch(pick){
+
+        case 1:
+
+            cout << " __________________________________________________________ \n";
+            cout << "|                                                          |\n";
+            cout << "| APPLICATION SETTINGS:                                    |\n";
+            cout << "|__________________________________________________________|\n";
+            cout << "                                                            \n";
+            textService("APPLICATION_CONFIG.txt");
+            break;
+
+        case 2:
+
+            cout << " __________________________________________________________ \n";
+            cout << "|                                                          |\n";
+            cout << "| PARSER SETTINGS:                                         |\n";
+            cout << "|__________________________________________________________|\n";
+            cout << "                                                            \n";
+            textService("PARSER_CONFIG.txt");
+            break;
+
+        case 3:
+
+            cout << "Exit.\n";
+            endLoop = true;
+            break;
+
+        default:
+
+            cout << "Wrong key.\n";
+            break;
+        }
+
+    }while(endLoop == false);
 
 }
 
